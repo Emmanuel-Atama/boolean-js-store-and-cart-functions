@@ -365,32 +365,71 @@ const cart = [
     quantity: 2
   }
 ];
-
+console.log(cart)
 // ----- Section ----- **
-
 // Write a function here...
 // - that takes an array as a parameter
 // - returns a number that rerpresents the total of the items in the cart
+function totalPriceOfCartItems(cart) {
+  let sumTotal = 0;
 
-// const totalPrice = function()
-
+  for (let i = 0; i < cart.length; i++) {
+    const item = cart[i];
+    const quantity = item.quantity;
+    console.log("Quantity of Items: ", quantity);
+    const price = item.product.price;
+    console.log("Price of Items: ", price);
+    sumTotal = sumTotal + price * quantity;
+  }
+  return sumTotal;
+}
+const totalPrice = totalPriceOfCartItems(cart);
+console.log("Total Price of Items in The Cart: ", totalPrice);
 // ----- Section ----- **
-
 // Write a function here...
 // - that takes an array as a parameter
 // - returns a number that rerpresents the quantity of the items in the cart
+function quantityOfCartItems(cart) {
+  let total = 0;
+ 
+  for (let i = 0; i < cart.length; i++) {
+    const item = cart[i];
+    const quantity = item.quantity;
+    console.log("Available  Quantity: ", quantity);
 
-// const quantityOfItemsInCart = function()
+    total = total + quantity;
+  }
+  return total
+  console.log("Total : ", total);
+}
+const totalQuantityInCart = quantityOfCartItems(cart)
+console.log("Total Quantity In Cart: ", totalQuantityInCart)
 
 // ----- Section ----- **
-
 // Write a function here...
 // - that takes an object as a parameter
 // - returns a string of the information about a product in the cart
 //      => "iPhone 12 | Mobile - £1400 x 2 || £2800"
-
+function productInfoInTheCart(cart) {
+  let productInfo = "";
+  for (let i = 0; 1 < cart.length; i++) {
+    const item = cart[i];
+    
+    const quantity = item.quantity;
+    const name = item.product.name;
+    const type = item.product.type;
+    const price = item.product.price;
+    const pricePerItem = price * quantity;
+    const row = `${name} | ${type} || ${pricePerItem}\n`;
+    if (productInfo === row) {
+      productInfo.push(item);
+    }
+  }
+  return productInfo;
+}
+const receiptRow = productInfoInTheCart(cart);
+console.log("Receipt Row: ", receiptRow);
 // const recieptRow = function()
-
 // ----- Section ----- **
 
 // Write a function here...
