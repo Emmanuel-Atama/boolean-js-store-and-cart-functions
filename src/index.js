@@ -1,4 +1,4 @@
-const store = {
+    const store = {
   location: "London",
   products: [
     {
@@ -115,11 +115,6 @@ console.log("Exepensive Products Over £1000: ", expensiveProducts);
 const expensiveProductsOver2000 = filterExpensiveProducts(products, 2000);
 console.log("Exepensive Products Over £2000: ", expensiveProductsOver2000);
 
-// Example of what it should look like:
-// const expensiveProducts = filterExpensiveProducts(store.products);
-
-// console.log("expensiveProducts: ", expensiveProducts);
-
 // ----- Section -----
 
 // Write a function here...
@@ -161,18 +156,6 @@ function filterproductsthatNeedToBeReceived(products) {
 const incomingDeliveryProducts = filterproductsthatNeedToBeReceived(products);
 console.log("Incoming Delivery: ", incomingDeliveryProducts);
 
-//     const isDeliveryIncoming = product.stock.incomingDelivery;
-
-//     if (isDeliveryIncoming) {
-//       productsThatNeedToBeReceived.push(product);
-//     }
-//   }
-// }
-// const productsThatNeedToBeReceived = filterproductsthatNeedToBeReceived(
-//   products
-// );
-// console.log("Delivery Products: ", productsThatNeedToBeReceived);
-
 // ----- Section -----
 
 // Write a function here...
@@ -198,7 +181,26 @@ console.log("Out of stock Products: ", outOfStockProducts);
 // - that takes an array as a parameter
 // - returns an array of products that have a quantity that is less than 100 and have no incoming delivery
 
-// const productsThatNeedToBeOrdered = function();
+function filterProductsThatNeedsToBeOrdered(products) {
+  const productsThatNeedToBeOrdered = [];
+
+  for (let i = 0; i < products.length; i++) {
+    const product = products[i];
+
+    const noIncomingDelivery = product.stock.incomingDelivery;
+
+    const quantityLessThan100 = product.stock.quantity;
+    if (noIncomingDelivery === false && quantityLessThan100 < 100) {
+      productsThatNeedToBeOrdered.push(product);
+    }
+  }
+  return productsThatNeedToBeOrdered;
+}
+const productsThatNeedToBeOrdered = filterProductsThatNeedsToBeOrdered(
+  products
+);
+console.log("Quantity Less Than 100: ", productsThatNeedToBeOrdered);
+
 
 // ----- Section ----- **
 
@@ -206,7 +208,19 @@ console.log("Out of stock Products: ", outOfStockProducts);
 // - that takes an array as a parameter
 // - returns an array of products of the type "tablet"
 
-// const tablets = function();
+function filterTabletProductsType(products) {
+  const tablets = [];
+  for (let i = 0; i < products.length; i++) {
+    const product = products[i];
+    const productType = product.type;
+    if (productType === "tablet") {
+      tablets.push(product);
+    }
+  }
+  return tablets;
+}
+const tablets = filterTabletProductsType(products);
+console.log("Tablets Available: ", tablets);
 
 // ----- Section -----
 
@@ -214,7 +228,19 @@ console.log("Out of stock Products: ", outOfStockProducts);
 // - that takes an array as a parameter
 // - returns an array of products of the type "computer"
 
-// const computers = function();
+function filterComputersProductsType(products) {
+  const computers = [];
+  for (let i = 0; i < products.length; i++) {
+    const product = products[i];
+    const productType = product.type;
+    if (productType === "computer") {
+      computers.push(product);
+    }
+  }
+  return computers;
+}
+const computers = filterComputersProductsType(products);
+console.log("Computers Available: ", computers);
 
 // ----- Section ----- **
 
@@ -222,7 +248,19 @@ console.log("Out of stock Products: ", outOfStockProducts);
 // - that takes an array as a parameter
 // - returns an object that represents an "iMac"
 
-// const iMac = function();
+function filterImac(products) {
+  const imac = [];
+  for (let i = 0; i < products.length; i++) {
+    const product = products[i];
+    const name = product.name;
+    if (name === "iMac") {
+      imac.push(product);
+    }
+  }
+  return imac;
+}
+const imac = filterImac(products);
+console.log("Object Representing iMac: ", imac);
 
 // ----- Section -----
 
@@ -230,7 +268,19 @@ console.log("Out of stock Products: ", outOfStockProducts);
 // - that takes an array as a parameter
 // - returns an object that represents an "iPhone 12"
 
-// const iPhone12 = function();
+function filterIphone12(products) {
+  const iphone12 = [];
+  for (let i = 0; i < products.length; i++) {
+    const product = products[i];
+    const name = product.name;
+    if (name === "iPhone 12") {
+      iphone12.push(product);
+    }
+  }
+  return iphone12;
+}
+const iphone12 = filterIphone12(products);
+console.log("Object Representing iPhone12: ", iphone12);
 
 // ----- Section -----
 
@@ -238,7 +288,19 @@ console.log("Out of stock Products: ", outOfStockProducts);
 // - that takes an array as a parameter
 // - returns an object that represents an "iPad Mini"
 
-// const iPadMini = function();
+function filterIpadMini(products) {
+  const ipadMini = [];
+  for (let i = 0; i < products.length; i++) {
+    const product = products[i];
+    const name = product.name;
+    if (name === "iPad mini") {
+      ipadMini.push(product);
+    }
+  }
+  return ipadMini;
+}
+const ipadMini = filterIpadMini(products);
+console.log("Object Representing ipadMini: ", ipadMini);
 
 // ----- CHALLENGE -----
 
@@ -247,7 +309,25 @@ console.log("Out of stock Products: ", outOfStockProducts);
 // - returns an array of unique product types
 //    => ["mobile", "computer", "tablet"]
 
-// const productTypes = function();
+function filterUniqueProductType(products) {
+  const productTypes = [];
+  for (let i = 0; i < products.length; i++) {
+    const product = products[i];
+    const mobileType = product.type;
+    const computerType = product.type;
+    const tabletType = product.type;
+    if (
+      mobileType === "mobile" &&
+      computerType === "computer" &&
+      tabletType === "computer"
+    ) {
+      productTypes.push(product);
+    }
+  }
+  return productTypes;
+}
+const productTypes = filterUniqueProductType(products);
+console.log("Unique Products Type: ", productTypes);
 
 // CART EXERCISES
 
