@@ -370,7 +370,7 @@ console.log(cart)
 // Write a function here...
 // - that takes an array as a parameter
 // - returns a number that rerpresents the total of the items in the cart
-function totalPriceOfCartItems(cart) {
+function calculateTotalPrice(cart) {
   let sumTotal = 0;
 
   for (let i = 0; i < cart.length; i++) {
@@ -383,13 +383,13 @@ function totalPriceOfCartItems(cart) {
   }
   return sumTotal;
 }
-const totalPrice = totalPriceOfCartItems(cart);
+const totalPrice = calculateTotalPrice(cart);
 console.log("Total Price of Items in The Cart: ", totalPrice);
 // ----- Section ----- **
 // Write a function here...
 // - that takes an array as a parameter
 // - returns a number that rerpresents the quantity of the items in the cart
-function quantityOfCartItems(cart) {
+function calculateQuantityInCart(cart) {
   let total = 0;
  
   for (let i = 0; i < cart.length; i++) {
@@ -402,7 +402,7 @@ function quantityOfCartItems(cart) {
   return total
   console.log("Total : ", total);
 }
-const totalQuantityInCart = quantityOfCartItems(cart)
+const totalQuantityInCart = calculateQuantityInCart(cart)
 console.log("Total Quantity In Cart: ", totalQuantityInCart)
 
 // ----- Section ----- **
@@ -410,34 +410,48 @@ console.log("Total Quantity In Cart: ", totalQuantityInCart)
 // - that takes an object as a parameter
 // - returns a string of the information about a product in the cart
 //      => "iPhone 12 | Mobile - £1400 x 2 || £2800"
-function productInfoInTheCart(cart) {
-  let productInfo = {};
-  for (let i = 0; 1 < cart.length; i++) {
-    const item = cart[i];
-    const quantity = item.quantity;
-    const name = item.product.name;
-    const type = item.product.type;
-    const price = item.product.price;
-    const pricePerItem = price * quantity;
-    // console.log("Price Per Item: ", pricePerItem)
-    const row = `${name} |  ${type} - ${price} * ${quantity} ||  ${pricePerItem}\n`;
-    // console.log("Showing Row: ", row);
-    productInfo = row;
-    console.log(productInfo);
-  }
-  return productInfo;
+function productInfoInTheCart(item) {
+  const quantity = item.quantity;
+  const name = item.product.name;
+  const type = item.product.type;
+  const price = item.product.price;
+  const pricePerItem = price * quantity;
+  // console.log("Price Per Item: ", pricePerItem)
+  const row = `${name} |  ${type} - ${price} * ${quantity} ||  ${pricePerItem}\n`;
+  // console.log("Showing Row: ", row);
+  return row;
 }
-const receiptRow = productInfoInTheCart(cart);
+const receiptRow = productInfoInTheCart(cart[0]);
 console.log("Receipt Row: ", receiptRow);
-
 // const recieptRow = function()
 // ----- Section ----- **
-
 // Write a function here...
 // - that takes an array as a parameter
 // - returns a string with the various rows on the reciept
 // TIP: Re-use the above function for "receiptRow"
+function buildReceiptMessage(cart) {
 
-// const receiptMessage = function()
+  let message = "Apple Store Receipt\n\n";
 
-// console.log("receiptMessage: ", receiptMessage)
+  for (let i = 0; i < cart.length; i++) {
+    const item = cart[i];
+    const row = productInfoInTheCart(item);
+    message += row + "\n";
+  }
+  message +="\n";
+
+  const quantityOfItems = calculateQuantityInCart(cart);
+  const quantiyOfItemsString = `Number of Items ${quantityOfItems}\n`;
+
+  message +=quantiyOfItemsString;
+
+  const total = calculateTotalPrice(cart);
+  const totalString = `Total || £${total.toFixed(2)}\n`;
+
+  message += totalString;
+
+  return message;
+}
+const receiptMessage = buildReceiptMessage(cart)
+
+console.log("receiptMessage: ", receiptMessage)
