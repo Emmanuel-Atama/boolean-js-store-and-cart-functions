@@ -395,7 +395,7 @@ function quantityOfCartItems(cart) {
   for (let i = 0; i < cart.length; i++) {
     const item = cart[i];
     const quantity = item.quantity;
-    console.log("Available  Quantity: ", quantity);
+    // console.log("Available  Quantity: ", quantity);
 
     total = total + quantity;
   }
@@ -411,30 +411,31 @@ console.log("Total Quantity In Cart: ", totalQuantityInCart)
 // - returns a string of the information about a product in the cart
 //      => "iPhone 12 | Mobile - £1400 x 2 || £2800"
 function productInfoInTheCart(cart) {
-  let productInfo = "";
+  let productInfo = {};
   for (let i = 0; 1 < cart.length; i++) {
     const item = cart[i];
-    
     const quantity = item.quantity;
     const name = item.product.name;
     const type = item.product.type;
     const price = item.product.price;
     const pricePerItem = price * quantity;
-    const row = `${name} | ${type} || ${pricePerItem}\n`;
-    if (productInfo === row) {
-      productInfo.push(item);
-    }
+    // console.log("Price Per Item: ", pricePerItem)
+    const row = `${name} |  ${type} - ${price} * ${quantity} ||  ${pricePerItem}\n`;
+    // console.log("Showing Row: ", row);
+    productInfo = row;
+    console.log(productInfo);
   }
   return productInfo;
 }
 const receiptRow = productInfoInTheCart(cart);
 console.log("Receipt Row: ", receiptRow);
+
 // const recieptRow = function()
 // ----- Section ----- **
 
 // Write a function here...
 // - that takes an array as a parameter
-// - returns a string with the variosu rows on the reciept
+// - returns a string with the various rows on the reciept
 // TIP: Re-use the above function for "receiptRow"
 
 // const receiptMessage = function()
